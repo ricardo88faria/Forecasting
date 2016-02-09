@@ -1,6 +1,5 @@
 #!/usr/bin/env Rscript
 
-
 #packages:
 library(rNOMADS)
 library(lubridate)
@@ -108,25 +107,7 @@ forecast_data_real <- format(forecast_hour_real, "%Y%m%d")
 
 #download file a fazer:
 for (i in 1:length(forecast_hour)){
-  #ficheiro <- paste("ll", file_name_ncep)
-  #if (as.logical(system(ficheiro)) = "TRUE"){
-  
-  #NOMADS NCEP list ~ 111.32km
-  #link_ncep <- paste("http://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25.pl?file=gfs.t", hora, "z.pgrb2.0p25.f0", forecast_hour[i], "&lev_10_m_above_ground=on&lev_2_m_above_ground=on&lev_entire_atmosphere=on&lev_entire_atmosphere_%5C%28considered_as_a_single_layer%5C%29=on&lev_high_cloud_layer=on&lev_low_cloud_layer=on&lev_middle_cloud_layer=on&lev_surface=on&var_ACPCP=on&var_APCP=on&var_CPRAT=on&var_HGT=on&var_LAND=on&var_PRATE=on&var_RH=on&var_SPFH=on&var_TCDC=on&var_TMP=on&var_UGRD=on&var_VGRD=on&var_WATR=on&subregion=&leftlon=320&rightlon=360&toplat=45&bottomlat=25&dir=%2Fgfs.", data, hora, sep = "")
-  
-  #GFS WAFS ftp
-  link_ncep_WAFS <- paste("www.ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.", data, hora, "/WAFS_blended_", data, hora, "f", forecast_hour[i], ".grib2", sep = "")
-  file_name_ncep_WAFS <- paste("Downloads/temp_WAFS_", forecast_data_real[i],"-", forecast_hour_real_n[i],".grib2", sep = "")
-  download.file(link_ncep_WAFS, file_name_ncep_WAFS, mode="wget")
-  #system(paste("wget ", link_ncep_WAFS, "-O", file_name_ncep_WAFS))
-  
-  #GFS NCEP ftp T1534 Semi-Lagrangian grid ~ 13km
-  link_ncep <- paste("www.ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.", data, hora, "/gfs.t", hora, "z.sfluxgrbf", forecast_hour[i], ".grib2", sep = "")
-  file_name_ncep <- paste("Downloads/temp_", forecast_data_real[i],"-", forecast_hour_real_n[i],".grib2", sep = "")
-  download.file(link_ncep, file_name_ncep, mode="wget")
-  #system(paste("wget ", link_ncep, "-O", file_name_ncep))
-  #} else {
-  #}
+  source("download_ftp_ncep_gfs0p25.R")
 }
 
 var_list <- c("LAND:",
@@ -433,7 +414,7 @@ for (i in 1:length(forecast_hour)){
     dev.off()
     
     ##level plot grafs
-    #name_png = paste("Images/", png_var[j], "_", forecast_data_real[i], "-", forecast_hour_real_n[i], ".png", sep = "")
+    #name_png = paste("images/", png_var[j], "_", forecast_data_real[i], "-", forecast_hour_real_n[i], ".png", sep = "")
     #png(name_png, width = 7000, height = 4500, units = "px", res = 500)  #width = 14000, height = 9000, units = "px", res = 1000)
     
     #image.plot(x , y, get(variav_name), col=color_var[j], xlab='Longitude [°]', ylab='Latitude [°]', axes = T, main = titulo_var[j], legend.lab = legend_var[j])
@@ -455,7 +436,7 @@ for (i in 1:length(forecast_hour)){
     max_WINDM_col = 35
   }
   
-  name_png_WINDM = paste("Images/WINDM_", forecast_data_real[i],"-", forecast_hour_real_n[i], ".png", sep = "")
+  name_png_WINDM = paste("images/WINDM_", forecast_data_real[i],"-", forecast_hour_real_n[i], ".png", sep = "")
   png(name_png_WINDM, width = 7000, height = 4500, units = "px", res = 500)
   
   filled.contour(x, y, variav_WINDM, color = rgb.palette.wind, levels = seq(0, max_WINDM_col, 1),  #nlevels = 100, #axes = F #(12), nlev=13,
@@ -523,7 +504,7 @@ for (i in 1:length(forecast_hour)){
       
       variav_name <- paste("variav_", png_var_WAFS[j], sep="")
       
-      name_png = paste("Images/", png_var_WAFS[j], "_", forecast_data_real[i],"-", forecast_hour_real_n[i], ".png", sep = "")
+      name_png = paste("images/", png_var_WAFS[j], "_", forecast_data_real[i],"-", forecast_hour_real_n[i], ".png", sep = "")
       png(name_png, width = 7000, height = 4500, units = "px", res = 500)
       
       filled.contour(x_WAFS, y_WAFS, get(variav_name), color = color_var[[j]], levels = levels_var[[j]], #(12), nlev=13,
@@ -570,3 +551,6 @@ for (i in 1:length(gifs_var)) {
 }
 
 print(Sys.time() - data_tempo)
+
+cat("Programado por Ricardo Faria \n
+    Finalizado")
