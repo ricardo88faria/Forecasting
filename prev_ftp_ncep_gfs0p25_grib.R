@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 
+
 #packages:
 library(rNOMADS)
 library(lubridate)
@@ -116,13 +117,13 @@ for (i in 1:length(forecast_hour)){
   #GFS WAFS ftp 
   link_ncep_WAFS <- paste("www.ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.", data, hora, "/WAFS_blended_", data, hora, "f", forecast_hour[i], ".grib2", sep = "")
   file_name_ncep_WAFS <- paste("Downloads/temp_WAFS_", forecast_data_real[i],"-", forecast_hour_real_n[i],".grib2", sep = "")
-  download.file(link_ncep_WAFS, file_name_ncep_WAFS, mode="wb")
+  download.file(link_ncep_WAFS, file_name_ncep_WAFS, mode="wget")
   #system(paste("wget ", link_ncep_WAFS, "-O", file_name_ncep_WAFS))
   
   #GFS NCEP ftp T1534 Semi-Lagrangian grid ~ 13km
   link_ncep <- paste("www.ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.", data, hora, "/gfs.t", hora, "z.sfluxgrbf", forecast_hour[i], ".grib2", sep = "")
   file_name_ncep <- paste("Downloads/temp_", forecast_data_real[i],"-", forecast_hour_real_n[i],".grib2", sep = "")
-  download.file(link_ncep, file_name_ncep, mode="wb")
+  download.file(link_ncep, file_name_ncep, mode="wget")
   #system(paste("wget ", link_ncep, "-O", file_name_ncep))
   #} else {
   #}
