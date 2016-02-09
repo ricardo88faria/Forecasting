@@ -37,7 +37,7 @@ cat("Programado por Ricardo Faria \n
 #####################################
 
 #Resolucao info
-##0p25 ~ 27km 
+##0p25 ~ 27km
 ##T1534, with equivalent grid-resolution of 13 km  in use!!!!!!!!!!!
 
 #sist. de coordenadas, projecao e coordenadas (N-S, E-O)
@@ -58,7 +58,7 @@ coords_EO <- paste(coord_O, ":", coord_E, sep="")
 #cores dos graficos
 rgb.palette.clouds <- colorRampPalette(c("lightskyblue1", "snow1", "snow2", "snow3", "lightsteelblue3"," snow4"), space = "rgb")
 rgb.palette.rain <- colorRampPalette(c("snow1", "lightsteelblue1", "yellowgreen", "orange", "tomato1", "violetred4"), space = "rgb")
-rgb.palette.wind <- colorRampPalette(c("lightsteelblue1", "mediumaquamarine","orange",  "tomato1", "violetred4"), space = "rgb") #"royalblue1", 
+rgb.palette.wind <- colorRampPalette(c("lightsteelblue1", "mediumaquamarine","orange",  "tomato1", "violetred4"), space = "rgb") #"royalblue1",
 rgb.palette.heat <- colorRampPalette(c("snow1", "snow3", "seagreen", "orange", "sienna1", "firebrick"), space = "rgb") #"snow2",
 rgb.palette.cat <- colorRampPalette(c("yellow1", "orange", "tomato1", "tomato4"), space = "rgb")
 rgb.palette.ctp <- colorRampPalette(c("orchid3", "violetred", "blue"), space = "rgb")
@@ -114,7 +114,7 @@ for (i in 1:length(forecast_hour)){
   #NOMADS NCEP list ~ 111.32km
   #link_ncep <- paste("http://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25.pl?file=gfs.t", hora, "z.pgrb2.0p25.f0", forecast_hour[i], "&lev_10_m_above_ground=on&lev_2_m_above_ground=on&lev_entire_atmosphere=on&lev_entire_atmosphere_%5C%28considered_as_a_single_layer%5C%29=on&lev_high_cloud_layer=on&lev_low_cloud_layer=on&lev_middle_cloud_layer=on&lev_surface=on&var_ACPCP=on&var_APCP=on&var_CPRAT=on&var_HGT=on&var_LAND=on&var_PRATE=on&var_RH=on&var_SPFH=on&var_TCDC=on&var_TMP=on&var_UGRD=on&var_VGRD=on&var_WATR=on&subregion=&leftlon=320&rightlon=360&toplat=45&bottomlat=25&dir=%2Fgfs.", data, hora, sep = "")
   
-  #GFS WAFS ftp 
+  #GFS WAFS ftp
   link_ncep_WAFS <- paste("www.ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.", data, hora, "/WAFS_blended_", data, hora, "f", forecast_hour[i], ".grib2", sep = "")
   file_name_ncep_WAFS <- paste("Downloads/temp_WAFS_", forecast_data_real[i],"-", forecast_hour_real_n[i],".grib2", sep = "")
   download.file(link_ncep_WAFS, file_name_ncep_WAFS, mode="wget")
@@ -159,7 +159,7 @@ var_list_clean <- c("LAND",
 
 for (i in 1:length(forecast_hour)){
   #transform .grib to .nc atravez do terminal, ter wgrib2 instalado, importante!!!!!
-  wgrib2 <- "./wgrib2"   #### tratar do rotate 
+  wgrib2 <- "./wgrib2"   #### tratar do rotate
   
   #./wgrib2  -s  temp_20160112-18.grib2  | grep  LAND:  |  ./wgrib2  -i  temp_20160112-18.grib2 -grib test.grib2
   #wgrib2 test.grib2 -small_grib 10:20 -20:20 small.test.grib2
@@ -190,7 +190,7 @@ for (i in 1:length(forecast_hour)){
   system(command_TMP3)
   
   #abrir/ler netcdf
-  nc_LAND <-open.ncdf("temp/temp_LAND.nc")         #Land contour 
+  nc_LAND <-open.ncdf("temp/temp_LAND.nc")         #Land contour
   nc_TMP <-open.ncdf("temp/temp_TMP.nc")           #Temperature at 2m [K]
   nc_DSWRF <-open.ncdf("temp/temp_DSWRF.nc")       #Downward Short-Wave Rad. Flux [W/m^2]
   nc_CPRAT <-open.ncdf("temp/temp_CPRAT.nc")       #Convective Precipitation Rate at surface [kg/m^2/s] == [mm/s]
@@ -240,10 +240,10 @@ for (i in 1:length(forecast_hour)){
   #variav_PREC[variav_PREC <= 0.02 ] = 0
   
   #specific humidity (SPFH) to relative humidity (HR)
-  variav_SPFH <- get.var.ncdf(nc_SPFH,"SPFH_2maboveground") 
+  variav_SPFH <- get.var.ncdf(nc_SPFH,"SPFH_2maboveground")
   
   #funcao de qair specific humidity, temp degrees C, pressure= 1013.25 mb, rh relative humidity
-  qair2rh <- function(qair, temp, press = 1013.25){         
+  qair2rh <- function(qair, temp, press = 1013.25){
     es <-  6.112 * exp((17.67 * temp)/(temp + 243.5))
     e <- qair * press / (0.378 * qair + 0.622)
     rh <- e / es
@@ -270,7 +270,7 @@ for (i in 1:length(forecast_hour)){
   #r <- rasterFromXYZ(df, crs=proj)
   #vectorplot(r, par.settings=RdBuTheme())
   
-  variav_TCDC <- get.var.ncdf(nc_TCDC,"TCDC_entireatmosphere_consideredasasinglelayer_")      #Total Cloud Cover  [%]   
+  variav_TCDC <- get.var.ncdf(nc_TCDC,"TCDC_entireatmosphere_consideredasasinglelayer_")      #Total Cloud Cover  [%]
   variav_TCDC_low <- get.var.ncdf(nc_TCDC,"TCDC_lowcloudlayer")                               #Total Cloud Cover  [%]
   variav_TCDC_middle <- get.var.ncdf(nc_TCDC,"TCDC_middlecloudlayer")                         #Total Cloud Cover  [%]
   variav_TCDC_high <- get.var.ncdf(nc_TCDC,"TCDC_highcloudlayer")                             #Total Cloud Cover  [%]
@@ -279,7 +279,7 @@ for (i in 1:length(forecast_hour)){
   variav_WATR <- get.var.ncdf(nc_WATR,"WATR_surface")                           #Water Runoff at surface [kg/m^2] == [mm]
   
   #funcao para calcular Richardson Number, CAPE(from grib), Uave6000 &  Uave500 [m/s]
-  Ri <- function(CAPE, Uave6000, Uave500){         
+  Ri <- function(CAPE, Uave6000, Uave500){
     S <-  sqrt((1/2)*((Uave6000 - Uave500)^2))
     ri <- CAPE/(S^2)
     return(ri)
@@ -288,22 +288,22 @@ for (i in 1:length(forecast_hour)){
   #variav_RI <- Ri(variav_CAPE, U6000, U500)
   
   
-  #variav_SOILW_0_0p1 <- get.var.ncdf(nc_SOILW,"SOILW_0M0D1mbelowground")                          
-  #variav_SOILW_0p1_0p4 <- get.var.ncdf(nc_SOILW,"SOILW_0D1M0D4mbelowground")                          
-  #variav_SOILW_0p4_1 <- get.var.ncdf(nc_SOILW,"SOILW_0D4M1mbelowground")                          
-  #variav_SOILW_1_2 <- get.var.ncdf(nc_SOILW,"SOILW_1M2mbelowground")                          
+  #variav_SOILW_0_0p1 <- get.var.ncdf(nc_SOILW,"SOILW_0M0D1mbelowground")
+  #variav_SOILW_0p1_0p4 <- get.var.ncdf(nc_SOILW,"SOILW_0D1M0D4mbelowground")
+  #variav_SOILW_0p4_1 <- get.var.ncdf(nc_SOILW,"SOILW_0D4M1mbelowground")
+  #variav_SOILW_1_2 <- get.var.ncdf(nc_SOILW,"SOILW_1M2mbelowground")
   #variav_SOILW <- variav_SOILW_0_0p1 + variav_SOILW_0p1_0p4 + variav_SOILW_0p4_1 + variav_SOILW_1_2
   
-  variav_SOILL_0_0p1 <- get.var.ncdf(nc_SOILL,"SOILL_0M0D1mbelowground")                           
-  variav_SOILL_0p1_0p4 <- get.var.ncdf(nc_SOILL,"SOILL_0D1M0D4mbelowground")                           
-  variav_SOILL_0p4_1 <- get.var.ncdf(nc_SOILL,"SOILL_0D4M1mbelowground")                           
-  variav_SOILL_1_2 <- get.var.ncdf(nc_SOILL,"SOILL_1M2mbelowground")                           
+  variav_SOILL_0_0p1 <- get.var.ncdf(nc_SOILL,"SOILL_0M0D1mbelowground")
+  variav_SOILL_0p1_0p4 <- get.var.ncdf(nc_SOILL,"SOILL_0D1M0D4mbelowground")
+  variav_SOILL_0p4_1 <- get.var.ncdf(nc_SOILL,"SOILL_0D4M1mbelowground")
+  variav_SOILL_1_2 <- get.var.ncdf(nc_SOILL,"SOILL_1M2mbelowground")
   variav_SOILL <- variav_SOILL_0_0p1 + variav_SOILL_0p1_0p4 + variav_SOILL_0p4_1 + variav_SOILL_1_2
   
-  variav_SOILM <- get.var.ncdf(nc_SOILM,"SOILM_0M2mbelowground")                   
+  variav_SOILM <- get.var.ncdf(nc_SOILM,"SOILM_0M2mbelowground")
   
   
-  variav_CAT_400mb <- get.var.ncdf(nc_WAFS,"CAT_400mb")               #Clear Air Turbulence (CAT) [%] 
+  variav_CAT_400mb <- get.var.ncdf(nc_WAFS,"CAT_400mb")               #Clear Air Turbulence (CAT) [%]
   variav_CAT_350mb <- get.var.ncdf(nc_WAFS,"CAT_350mb")
   variav_CAT_300mb <- get.var.ncdf(nc_WAFS,"CAT_300mb")
   variav_CAT_250mb <- get.var.ncdf(nc_WAFS,"CAT_250mb")
@@ -427,7 +427,7 @@ for (i in 1:length(forecast_hour)){
     
     filled.contour(x, y, get(variav_name), color = color_var[[j]], levels = levels_var[[j]], # nlevels = 400, #axes = F #(12), nlev=13,
                    plot.title = title(main = as.expression(paste(titulo_var[j])), xlab = 'Longitude [°]', ylab = 'Latitude [°]'),
-                   plot.axes = {axis(1); axis(2); plot(getMap(resolution = "high"), add = T);grid()}, 
+                   plot.axes = {axis(1); axis(2); plot(getMap(resolution = "high"), add = T);grid()},
                    key.title = title(main =  as.expression(paste(legend_var[j]))))
     
     dev.off()
@@ -528,7 +528,7 @@ for (i in 1:length(forecast_hour)){
       
       filled.contour(x_WAFS, y_WAFS, get(variav_name), color = color_var[[j]], levels = levels_var[[j]], #(12), nlev=13,
                      plot.title=title(main=as.expression(paste(titulo_var_WAFS[j], forecast_data_real[i],"-", forecast_hour_real_n[i], ":00 UTC",sep="")), xlab='Longitude [°]', ylab='Latitude [°]'),
-                     plot.axes={axis(1); axis(2);map('worldHires', add=TRUE);grid()}, 
+                     plot.axes={axis(1); axis(2);map('worldHires', add=TRUE);grid()},
                      key.title = title(main =  as.expression(paste("[%]"))))
       
       dev.off()
@@ -542,7 +542,7 @@ for (i in 1:length(forecast_hour)){
   
 }
 
-#GIFs 
+#GIFs
 
 gifs_var <- c("TMP_",
               "PREC_",
