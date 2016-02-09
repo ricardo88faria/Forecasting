@@ -7,4 +7,4 @@ temp
 .Rhistory
 wgrib2
 .DS_Store
-log
+log.out

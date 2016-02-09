@@ -1,7 +1,10 @@
-.PHONY: run tail
+.PHONY: run tail kill
 
 run:
-	./forecast.R >& log
+	./forecast.R > log.out
 
 tail:
-	tail -f log
+	tail -f log.out
+
+kill:
+	killall R
