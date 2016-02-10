@@ -105,7 +105,7 @@ forecast_hour_real <- as.POSIXct(hora, format="%H") + hours(as.numeric(forecast_
 forecast_hour_real_n <- format(forecast_hour_real, "%H")
 forecast_data_real <- format(forecast_hour_real, "%Y%m%d")
 
-#download file a fazer:
+#download file:
 for (i in 1:length(forecast_hour)){
   source("download_ftp_ncep_gfs0p25.R")
 }
@@ -146,7 +146,7 @@ for (i in 1:length(forecast_hour)){
   #wgrib2 test.grib2 -small_grib 10:20 -20:20 small.test.grib2
   #wgrib2 small.test.grib2 -netcdf test.nc
 
-  file_name_ncep <- paste("Downloads/temp_", forecast_data_real[i],"-", forecast_hour_real_n[i],".grib2", sep = "")
+  file_name_ncep <- paste("downloads/temp_", forecast_data_real[i],"-", forecast_hour_real_n[i],".grib2", sep = "")
 
   for (j in 1:length(var_list)) {
     save_file_grib <- paste("temp/TEMP_", var_list_clean[j], ".grib2", sep="")
@@ -161,7 +161,7 @@ for (i in 1:length(forecast_hour)){
   }
 
   #WAFS transform .grib to .nc atravez do terminal, ter wgrib2 instalado, importante!!!!!
-  file_name_ncep_WAFS <- paste("Downloads/temp_WAFS_", forecast_data_real[i],"-", forecast_hour_real_n[i],".grib2", sep = "")
+  file_name_ncep_WAFS <- paste("downloads/temp_WAFS_", forecast_data_real[i],"-", forecast_hour_real_n[i],".grib2", sep = "")
 
   save_file_nc_WAFS <- paste("temp/temp_WAFS.nc", sep="")
   file_name_ncep_WAFS1 <- paste("temp/TEMP_WAFS_ncep.grib2", sep="")
