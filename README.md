@@ -33,6 +33,12 @@ Work in progress!!!
 ![alt text](obs/SOILL_20160209-18.png)
 
 Usage:
+
+* First time only, create folder in code root:
+```python
+mkdir downloads temp images GIFs
+```
+
 * Run:
 ```python
 make run
