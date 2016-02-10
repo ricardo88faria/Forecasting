@@ -1,5 +1,5 @@
 # Forecasting
-Forecasting Portugal, Madeira & Açores islands
+Climatic Forecasting for Portugal, Madeira & Açores islands.
 
 Working in progress!!!
 
@@ -31,6 +31,9 @@ Working in progress!!!
 
 * Soil moisture
 ![alt text](obs/SOILL_20160209-18.png)
+
+Source:
+WRF NMM from NCEP - gfs
 
 Contacts:
 <ricardo88faria@gmail.com>
