@@ -32,8 +32,19 @@ Work in progress!!!
 * Soil moisture
 ![alt text](obs/SOILL_20160209-18.png)
 
+Usage:
+* Run:
+```python
+make run```
+
+* kill application:
+```python
+make kill```
+
 Source:
+
 WRF NMM from NCEP - gfs
 
 Contacts:
+
 <ricardo88faria@gmail.com>
