@@ -1,7 +1,7 @@
 # Forecasting
 Climatic Forecasting for Portugal, Madeira & Açores islands.
 
-Working in progress!!!
+Work in progress!!!
 
 ## Results:
 
