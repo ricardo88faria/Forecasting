@@ -35,11 +35,13 @@ Work in progress!!!
 Usage:
 * Run:
 ```python
-make run```
+make run
+```
 
 * kill application:
 ```python
-make kill```
+make kill
+```
 
 Source:
 
