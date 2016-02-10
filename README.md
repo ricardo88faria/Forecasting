@@ -6,7 +6,7 @@ Working in progress!!!
 ## Results:
 
 
-** Animations (GIF) examples **
+**Animations (GIF) examples**
 
 * Temperature
 ![alt text](obs/TMP_20160209-18.gif)
@@ -24,7 +24,7 @@ Working in progress!!!
 ![alt text](obs/HR_20160209-18.gif)
 
 
-** High quality png examples **
+**High quality png examples**
 
 * Global horizontal radiation
 ![alt text](obs/DSWRF_20160209-18.png)
