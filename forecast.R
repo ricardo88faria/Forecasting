@@ -553,6 +553,7 @@ for (i in 1:length(gifs_var)) {
 
 }
 
+#KMZ
 matrix_rotate <- function(x)
   t(apply(x, 2, rev))
 
