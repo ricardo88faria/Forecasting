@@ -32,12 +32,7 @@ Work in progress!!!
 * Soil moisture
 ![alt text](obs/SOILL_20160209-18.png)
 
-Usage:
-
-* First time only, create folder in code root:
-```python
-mkdir downloads temp images GIFs
-```
+## Usage:
 
 * Run:
 ```python

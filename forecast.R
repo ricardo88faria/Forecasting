@@ -24,7 +24,7 @@ library(plotly)
 library(raster)
 library(rgdal)
 library(plotKML)
-
+library(sp)
 
 #limpeza ambiente e objetos:
 #rm(list=ls())
@@ -34,6 +34,9 @@ library(plotKML)
 cat("Programado por Ricardo Faria \n
     necessário ter instalado o wgrib2 na raiz do programa e o Imagemagick(convert)")
 #####################################
+
+#Folder tree
+system("mkdir downloads temp images GIFs kmz")
 
 #Resolucao info
 ##0p25 ~ 27km
@@ -549,6 +552,21 @@ for (i in 1:length(gifs_var)) {
   system(paste("convert -verbose -resize 30% -delay 80 -loop 0", paste("Images/", gifs_var[i],"*", sep=""), gif_name))
 
 }
+
+matrix_rotate <- function(x)
+  t(apply(x, 2, rev))
+
+test <-  raster(matrix_rotate(matrix_rotate(matrix_rotate(variav_TMP))), 
+                xmn = coord_real_O, xmx = coord_real_E, ymn = coord_S, ymx = coord_N, CRS("+proj=longlat +datum=WGS84"))
+#proj4string(test) <- CRS("+proj=longlat +datum=WGS84") #proj
+
+#make contourline in kml
+#cut(test, breaks= 10)
+#rasterToPolygons(test, dissolve=T)
+
+setwd("kmz")
+plotKML(obj=test, folder.name="TMP", file.name="TMP.kml", colour_scale=rgb.palette.heat(400))
+setwd("../")
 
 print(Sys.time() - data_tempo)
 
