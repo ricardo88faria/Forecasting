@@ -9,28 +9,28 @@ Work in progress!!!
 **Animations (GIF) examples**
 
 * Temperature
-![alt text](obs/TMP_20160209-18.gif)
+![alt text](github/TMP_20160209-18.gif)
 
 * Wind direction & speed
-![alt text](obs/WINDM_20160209-18.gif)
+![alt text](github/WINDM_20160209-18.gif)
 
 * Low mid high cloud layer
-![alt text](obs/TCDC_tot_20160208-12.gif)
+![alt text](github/TCDC_tot_20160208-12.gif)
 
 * Precipitation
-![alt text](obs/PREC_20160209-18.gif)
+![alt text](github/PREC_20160209-18.gif)
 
 * Relative humidity
-![alt text](obs/HR_20160209-18.gif)
+![alt text](github/HR_20160209-18.gif)
 
 
 **High quality png examples**
 
 * Global horizontal radiation
-![alt text](obs/DSWRF_20160209-18.png)
+![alt text](github/DSWRF_20160209-18.png)
 
 * Soil moisture
-![alt text](obs/SOILL_20160209-18.png)
+![alt text](github/SOILL_20160209-18.png)
 
 ## Usage:
 
